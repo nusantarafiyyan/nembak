@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be Mine?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Comic+Neue:wght@700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(to bottom right, #fff0f5, #ffe4f5);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #ff3399;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      animation: bounce 2s infinite;
+    }
+
+    .heart {
+      font-size: 60px;
+      animation: beat 1s infinite alternate;
+      margin: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(2deg); }
+    }
+
+    .character {
+      position: relative;
+      width: 200px;
+      height: 250px;
+      margin: 0 auto 50px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      animation: floatUp 5s infinite ease-in-out;
+    }
+
+    .head {
+      width: 100px;
+      height: 100px;
+      background: #ffe0e0;
+      border-radius: 50%;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .eyes {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      font-size: 20px;
+    }
+
+    .sweat {
+      position: absolute;
+      top: 0;
+      left: 70px;
+      font-size: 24px;
+      animation: drip 1s infinite;
+    }
+
+    @keyframes drip {
+      0% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(30px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 0; }
+    }
+
+    .arms {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 30px;
+      background: #ffe0e0;
+      border-radius: 15px;
+      transform: rotate(-15deg);
+    }
+
+    .flower {
+      position: absolute;
+      bottom: 35px;
+      left: 100px;
+      font-size: 30px;
+      animation: rotateFlower 3s infinite linear;
+    }
+
+    @keyframes rotateFlower {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 50px 0;
+      position: relative;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      margin: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .yes {
+      background: linear-gradient(45deg, #ff66cc, #ff99cc);
+      color: white;
+      animation: pulse 1.5s infinite;
+    }
+
+    .maybe {
+      background: linear-gradient(45deg, #ffb6d9, #ffe0f0);
+      color: #ff3399;
+    }
+
+    .think {
+      background: #fff;
+      color: #ff3399;
+      border: 2px solid #ff3399;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff66cc;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .final-reveal {
+      text-align: center;
+      padding: 50px 20px;
+      display: none;
+    }
+
+    .final-reveal h2 {
+      font-size: 40px;
+      animation: pop 0.5s ease-in;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .floating-emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 5s infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50px); }
+    }
+
+    .petal {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: fallPetal 10s linear infinite;
+    }
+
+    @keyframes fallPetal {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 0.5; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-30px); }
+    }
+
+    .blush {
+      position: absolute;
+      width: 20px;
+      height: 10px;
+      background: rgba(255, 51, 153, 0.5);
+      border-radius: 50%;
+      animation: floatUp 2s ease-in-out infinite;
+    }
+
+    .scroll-section {
+      padding: 100px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    .scroll-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #ff3399;
+      opacity: 0.7;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Confetti Container -->
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Will You Be Mine? <span class="heart">❤️</span></h1>
+    <div class="character">
+      <div class="head">
+        <div class="eyes">👀</div>
+        <div class="sweat">💧</div>
+      </div>
+      <div class="arms"></div>
+      <div class="flower">🌹</div>
+    </div>
+  </section>
+
+  <!-- Buttons Section -->
+  <section class="buttons">
+    <button class="btn yes" id="yesBtn">Yes</button>
+    <button class="btn maybe" id="maybeBtn">Maybe</button>
+    <button class="btn think" id="thinkBtn">Let me think...</button>
+  </section>
+
+  <!-- Final Reveal Section -->
+  <section class="final-reveal" id="finalReveal">
+    <h2>She said YESSS!! 😍💖</h2>
+    <div class="floating-emoji" style="left: 20%; top: 30%;">🥰</div>
+    <div class="floating-emoji" style="left: 50%; top: 20%;">🎉</div>
+    <div class="floating-emoji" style="left: 80%; top: 40%;">💖</div>
+  </section>
+
+  <!-- Scroll-triggered Section -->
+  <section class="scroll-section">
+    <h2>Some magical things happen when you scroll 🌸</h2>
+    <p>Look at those petals falling in slow motion!</p>
+  </section>
+
+  <!-- Music -->
+  <audio id="loveMusic" src="DJ SUDAH TERBIASA TERJADI TANTE _ SOUND PALING VIRAL DI TIKTOK ‼️.mp3" preload="auto"></audio>
+
+  <footer>Made with 💖 for your special someone</footer>
+
+  <script>
+    const thinkBtn = document.getElementById('thinkBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const maybeBtn = document.getElementById('maybeBtn');
+    const confettiContainer = document.getElementById('confettiContainer');
+    const finalReveal = document.getElementById('finalReveal');
+    const loveMusic = document.getElementById('loveMusic');
+
+    // Music play on first click
+    document.body.addEventListener('click', () => {
+      loveMusic.play().catch(() => {});
+    });
+
+    // Dodging button logic
+    document.addEventListener('mousemove', (e) => {
+      const btnRect = thinkBtn.getBoundingClientRect();
+      const distance = Math.sqrt(
+        Math.pow(e.clientX - (btnRect.left + btnRect.width/2), 2) +
+        Math.pow(e.clientY - (btnRect.top + btnRect.height/2), 2)
+      );
+      
+      if (distance < 100) {
+        const x = Math.random() * (window.innerWidth - btnRect.width);
+        const y = Math.random() * (window.innerHeight - btnRect.height);
+        thinkBtn.style.position = 'absolute';
+        thinkBtn.style.left = x + 'px';
+        thinkBtn.style.top = y + 'px';
+      }
+    });
+
+    // Confetti animation
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = ['#ff66cc','#ffb6d9','#ff99cc','#ffe0f0'][Math.floor(Math.random()*4)];
+      confetti.style.width = confetti.style.height = Math.random() * 10 + 5 + 'px';
+      confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+      confettiContainer.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), 4000);
+    }
+
+    // Final reveal
+    yesBtn.addEventListener('click', () => {
+      // Hide buttons
+      document.querySelector('.buttons').style.display = 'none';
+      
+      // Show final message
+      finalReveal.style.display = 'block';
+      
+      // Play confetti
+      setInterval(createConfetti, 50);
+      
+      // Animate confetti longer
+      setTimeout(() => {
+        const confettis = document.querySelectorAll('.confetti');
+        confettis.forEach(c => c.remove());
+      }, 10000);
+    });
+
+    // Maybe button response
+    maybeBtn.addEventListener('click', () => {
+      alert("Aww, come on! Don't be shy 😥");
+    });
+
+    // Scroll-triggered animations
+    const scrollSections = document.querySelectorAll('.scroll-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Create falling petals
+          for (let i = 0; i < 30; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * window.innerWidth + 'px';
+            petal.style.top = Math.random() * -100 + 'px';
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            document.body.appendChild(petal);
+            
+            setTimeout(() => petal.remove(), 10000);
+          }
+          
+          // Create blushing emojis
+          for (let i = 0; i < 5; i++) {
+            const blush = document.createElement('div');
+            blush.className = 'blush';
+            blush.style.left = Math.random() * window.innerWidth + 'px';
+            blush.style.top = Math.random() * window.innerHeight + 'px';
+            blush.style.width = Math.random() * 30 + 10 + 'px';
+            blush.textContent = [' blush', ' 😳', ' 😅', ' 😊', ' 💖'][Math.floor(Math.random()*5)];
+            document.body.appendChild(blush);
+            
+            setTimeout(() => blush.remove(), 5000);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    scrollSections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
